@@ -1,0 +1,141 @@
+*
+{
+	margin:0px;
+	padding:0px;
+}
+
+
+body
+{
+	font-family:Arial;
+    font-size:20px;
+    background-color:Gray;
+}
+
+h1
+{
+	text-align:center;
+	margin-bottom:20px;
+}
+#startscherm
+{
+	display:block;
+}
+
+#speelveldscherm
+{
+	display:block;
+}
+
+#wrapper 
+{
+   background-color:White;
+   width:780px; 
+   
+   margin:20px auto; 
+   padding:10px 0px 5px 0px;         
+}
+		
+header
+{
+    margin-top:20px;
+	margin-left:20px;
+} 
+   
+#speelveld
+{
+    width:364px;
+	height:312px;
+    border: 1px solid #666666;
+    margin-right:auto;
+	margin-left:auto;
+	margin-bottom:20px;
+}
+
+#speler1
+{
+	float:left;
+	width:200px;
+	text-align:center;
+}
+
+#speler2
+{
+	float:right;
+	width:200px;
+	text-align:center;
+}
+
+table td
+{
+	padding: 20px;
+}
+
+#namenveld
+{
+	width:500px;
+    
+    margin-right:auto;
+	margin-left:auto;
+	margin-bottom:20px;
+}
+
+.klein
+{
+	font-size:60%;
+	color:red;
+}
+.fiche
+{	
+    height:50px;
+	background: url(../images/spel/leeg.jpg);
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+    width:50px;
+    border:1px solid #666666;
+	margin:20px auto;
+
+	
+}
+ 
+#speelveld >div  
+{
+    height:50px;
+	background: url(../images/spel/leeg.jpg);
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+    width:50px;
+    float: left;
+    border:1px solid #666666;
+}
+
+
+
+nav
+{
+
+	text-align:center;
+}
+
+button
+{
+	margin:0px 40px;
+}
+#mededeling{
+	width: 350px;
+	margin:20px auto;
+	border-color:red;
+    border-width: thin;
+    border-style:solid;
+    padding:10px;
+    text-align:center;
+    color:red;
+}
+footer
+{
+    padding:10px;
+    text-align:right;
+	font-size:0.5em;
+	font-style:italic;
+    color:red;
+ }
