@@ -1,23 +1,19 @@
-'use strict'
+import ViewBeheerder from "../view/ViewBeheerder";
+import VierOpEenRij from "../model/VierOpEenRij";
+import Speler from "../model/Speler";
 
-function Controller()
+export default class Controller
 {
-	var model;
-	var view;
-	var speler1,speler2;
-
-	this.configure = configure;
-	
-	function configure()
+	constructor()
 	{
-		model = new VierOpEenRij();
-		view = new ViewBeheerder(reageerKlikOpSpeelveld, reageerKlikOpStart, reageerKlikOpNieuwSpel, reageerKlikOpStoppen);
-		speler1=new Speler(true,"ROOD");
-		speler2=new Speler(false,"GEEL");
-		view.toonStartscherm();
+		this.model = new VierOpEenRij();
+		this.view = new ViewBeheerder(reageerKlikOpSpeelveld, reageerKlikOpStart, reageerKlikOpNieuwSpel, reageerKlikOpStoppen);
+		this.speler1=new Speler(true,"ROOD");
+		this.speler2=new Speler(false,"GEEL");
+		this.ViewBeheerder.toonStartscherm();
 	}
 	
-	function reageerKlikOpNieuwSpel()
+	reageerKlikOpNieuwSpel()
 	{
 		model.reset();
 		var fiches = model.getFiches();
@@ -37,37 +33,37 @@ function Controller()
 	}
 	
 	
-	function reageerKlikOpStoppen()
+	reageerKlikOpStoppen()
 	{
 		
 		view.toonStartscherm();
 		view.resetNamen();
 	}
 	
-	function reageerKlikOpStart(event)
+	reageerKlikOpStart(event)
 	{
 		model.reset();
 		
 		//update view
-		var fiches = model.getFiches();
+		const fiches = model.getFiches();
 		view.toonFiches(fiches);
 		
 		speler1.resetScore();
 		speler2.resetScore();
 		
-		var naam1=view.getNaamSpeler1();
-		var naam2=view.getNaamSpeler2();
+		const naam1=ViewBeheerder.getNaamSpeler1();
+		const naam2=view.getNaamSpeler2();
 		
-		if(naam1!=naam2 && naam1!="" && naam2 !="")
+		if(naam1!==naam2 && naam1!=="" && naam2 !=="")
 		{
 			speler1.setNaam(naam1);
 			speler2.setNaam(naam2);
 		
 		
 		
-			view.toonSpeelveldscherm();
+			ViewBeheerder.toonSpeelveldscherm();
 			view.verbergNavigatie();
-			view.toonSpelers(speler1,speler2);
+			ViewBeheerder.toonSpelers(speler1,speler2);
 			
 			if(speler1.benIkAanBeurt())
 			{
@@ -82,7 +78,7 @@ function Controller()
 		}
 	}
 	
-	function reageerKlikOpSpeelveld(event)
+	reageerKlikOpSpeelveld(event)
 	{
 		var actieveSpeler,passieveSpeler;
 		if (model.isSpelActief())
@@ -110,12 +106,12 @@ function Controller()
 					actieveSpeler.verhoogScore();
 					view.toonMededeling(actieveSpeler.getNaam()+" heeft gewonnen!!!");
 							
-					view.toonSpelers(speler1,speler2);
+					ViewBeheerder.toonSpelers(speler1,speler2);
 					view.toonNavigatie();
 				}
 				
 				var gelijkspel=model.isGelijkspel();
-				if(gelijkspel==true)
+				if(gelijkspel===true)
 				{
 					view.toonMededeling("gelijkspel!");
 					view.toonNavigatie();

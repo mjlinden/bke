@@ -1,169 +1,137 @@
-'use strict'
 
-function VierOpEenRij()
+
+export default class VierOpEenRij
 {
-	var vakjes;//LEEG, GEEL, ROOD
-	var spelActief;
-	
-	this.getFiches = getFiches;
-	this.magZet = magZet;
-	this.isWinnaar=isWinnaar;
-	this.isGelijkspel=isGelijkspel;
-	this.maakSpelActief=maakSpelActief;
-	
-	this.isSpelActief=isSpelActief;
-	this.reset=reset;
 
 		//*********************initialisatie bij aanroepen constructor*****************************************
-		vakjes= new Array(6);
-		spelActief=false;
-		
-		for( var i=0; i<6; i++)
+	constructor() {
+		this.vakjes= new Array(3);
+		this.spelActief=false;
+
+		for( var i=0; i<3; i++)
 		{
-			vakjes[i]=new Array(7);
+			this.vakjes[i]=new Array(3);
 		}
-		reset();
+		this.reset();
+	}
+
 		//***********************einde initialisatie***********************************************************
 
-	function maakSpelActief()
+	maakSpelActief()
 	{
-		spelActief=true;
+		this.spelActief=true;
 	}
 	
-	function isSpelActief()
+	isSpelActief()
 	{
-		return spelActief;
+		return this.spelActief;
 	}
 	
-	function isGelijkspel()
+	isGelijkspel()
 	{
-		var gelijk=true;
-		for(var rij=0;rij<6;rij++)
+		let gelijkspel=true;
+
+		for(let rij=0; rij<3; rij++)
 		{	
-			for (var kolom = 0; kolom <7; kolom++) 
+			for (let kolom = 0; kolom <3; kolom++)
 			{
-				if (vakjes[rij][kolom]=="LEEG") 
+				if(vakjes[rij][kolom]==="LEEG")
 				{
-					gelijk=false;
+					this.gelijkspel=false;
 				}
 			}
 		}
 		
-		if(gelijk==true)
+		if(this.gelijkspel===true)
 		{
-			spelActief=false;
+			this.spelActief=false;
 		}	
 		
-		return gelijk;
+		return this.gelijkspel;
 	}
 	
-	function isWinnaar( kleur) 
+	isWinnaar( kleur)
 	{
-		var winnaar=false;
+		let kolom;
+		let rij;
+		let winnaar=false;
 		
 		/////////////////////Controle Horizontaal/////////////////////////
-		for(var rij=0;rij<6;rij++)
-		{	
-			for (var kolom = 0; kolom <= 3; kolom++) 
-			{
-				if ((vakjes[rij][kolom] == kleur && vakjes[rij][kolom + 1] == kleur && vakjes[rij][kolom + 2] == kleur && vakjes[rij][kolom + 3]) == kleur) 
+		for(rij = 0; rij<3; rij++)
+		{
+				if ((this.vakjes[rij][0] === kleur && this.vakjes[rij][1] === kleur && this.vakjes[rij][2] === kleur) )
 				{
-					vakjes[rij][kolom]="GROEN";
-					vakjes[rij][kolom+1]= "GROEN";
-					vakjes[rij][kolom+2]="GROEN";
-					vakjes[rij][kolom+3]="GROEN";
-					spelActief=false;
+					vakjes[rij][0]="GROEN";
+					vakjes[rij][1]= "GROEN";
+					vakjes[rij][2]="GROEN";
+					this.spelActief=false;
 					winnaar = true;
 				}
-			}
 		}
 		
 		/////////////////////Controle Verticaal///////////////////////////
-		for(var kolom=0;kolom<7;kolom++)
+		for(kolom=0;kolom<7;kolom++)
 		{	
-			for (var rij = 0; rij <= 2; rij++) 
-			{
-				if ((vakjes[rij][kolom] == kleur && vakjes[rij+1][kolom] == kleur && vakjes[rij+2][kolom] == kleur && vakjes[rij+3][kolom]) == kleur) 
+
+				if ((this.vakjes[0][kolom] === kleur && this.vakjes[1][kolom] === kleur && this.vakjes[2][kolom] === kleur ))
 				{
-					vakjes[rij][kolom]="GROEN";
-					vakjes[rij+1][kolom]= "GROEN";
-					vakjes[rij+2][kolom]="GROEN";
-					vakjes[rij+3][kolom]="GROEN";
-					spelActief=false;
+					vakjes[0][kolom]="GROEN";
+					vakjes[1][kolom]= "GROEN";
+					vakjes[2][kolom]="GROEN";
+					this.spelActief=false;
 					winnaar = true;
 				}
-			}
+
 		}
 		
 		
-		///////////////////////Controle Diagonaal (hoog naar laag)/////////
-		
-		for (var kolom = 0; kolom <= 3; kolom++) 
+		///////////////////////Controle Diagonaal /////////
+
+		if (this.vakjes[0][0] === kleur && this.vakjes[1][1] === kleur && this.vakjes[2][2] === kleur )
 		{
-			for (var rij = 0; rij <= 2; rij++) 
-			{
-				if (vakjes[rij][kolom] == kleur && vakjes[rij + 1][kolom + 1] == kleur && vakjes[rij + 2][kolom + 2] == kleur && vakjes[rij + 3][kolom + 3] == kleur) 
-				{
-					vakjes[rij][kolom]="GROEN";
-					vakjes[rij + 1][kolom + 1]="GROEN";
-					vakjes[rij + 2][kolom + 2]="GROEN";
-					vakjes[rij + 3][kolom + 3]="GROEN";
-					spelActief=false;
-					winnaar = true;
-				}
-			}
+			vakjes[0][0]="GROEN";
+			vakjes[1][1]="GROEN";
+			vakjes[2][2]="GROEN";
+
+			this.spelActief=false;
+			winnaar = true;
 		}
-		
-		///////////////////////Controle Diagonaal (laag naar hoog)//////////
-		
-		for (var kolom = 0; kolom <= 3; kolom++) 
+
+		if (this.vakjes[0][2] === kleur && this.vakjes[1][1] === kleur && this.vakjes[2][0] === kleur)
 		{
-			for (var rij = 5; rij >= 3; rij--) 
-			{
-				if (vakjes[rij][kolom] == kleur && vakjes[rij - 1][kolom + 1] == kleur && vakjes[rij - 2][kolom + 2] == kleur && vakjes[rij - 3][kolom + 3] == kleur) 
-				{
-					vakjes[rij][kolom]="GROEN";
-					vakjes[rij - 1][kolom + 1]="GROEN";
-					vakjes[rij - 2][kolom + 2]="GROEN";
-					vakjes[rij - 3][kolom + 3]="GROEN";
-					spelActief=false;
-					winnaar = true;
-				}
-			}
+			vakjes[0][2]="GROEN";
+			vakjes[1][1]="GROEN";
+			vakjes[2][0]="GROEN";
+
+			this.spelActief=false;
+			winnaar = true;
 		}
-		
-		/////////////////////////////////////////////////////////////////////
-		
-		
 		return winnaar;
 	}
 	
-	function reset()
+	reset()
 	{
-		for( var rij=0; rij<6; rij++)
+		for(let rij=0; rij<3; rij++)
 		{
-			for (var kolom=0; kolom<7; kolom++)
+			for (let kolom=0; kolom<3; kolom++)
 			{
-				vakjes[rij][kolom]="LEEG";
+				this.vakjes[rij][kolom]="LEEG";
 			}
 		}
 	}
 	
-	function getFiches()
+	getFiches()
 	{
-		return vakjes;
+		return this.vakjes;
 	}
 	
-	function magZet(kolom,kleur)
+	magZet(rij,kolom,kleur)
 	{
-		for(var rij = 5; rij>=0; rij--)
-		{
-			if(vakjes[rij][kolom]==="LEEG")
+			if(this.vakjes[rij][kolom]==="LEEG")
 			{
-				vakjes [rij][kolom]= kleur;
+				this.vakjes[rij][kolom]= kleur;
 				return true;
 			}
-		}
 		return false;
 	}
 	

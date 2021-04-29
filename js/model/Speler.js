@@ -1,73 +1,60 @@
-'use strict'
 
-function Speler(sAanBeurt,sKleur)
+
+export default class Speler
 {
-	var naam;
-	var aanBeurt;
-	var kleur;
-	var score;
 
-	
-	this.getNaam=getNaam;
-	this.setNaam=setNaam;
-	this.getScore = getScore;
-	this.verhoogScore=verhoogScore;
-	this.getKleur = getKleur;
-	this.wisselBeurt=wisselBeurt;
-	this.benIkAanBeurt= benIkAanBeurt;
-	this.resetScore=resetScore;
+	constructor(sAanBeurt,sKleur) {
+		this.aanBeurt=sAanBeurt;
+		this.kleur=sKleur;
+		this.score=0;
+	}
 
-		//*********************initialisatie bij aanroepen constructor*****************************************
-		aanBeurt=sAanBeurt;
-		kleur=sKleur;
-		score=0;
-		//***********************einde initialisatie***********************************************************
-	
-	function resetScore()
+
+	resetScore()
 	{
-		score=0;
+		this.score=0;
 	}
 		
-	function getNaam()
+	getNaam()
 	{
-		return naam;
+		return this.naam;
 	}
 	
-	function setNaam(sNaam)
+	setNaam(sNaam)
 	{
-		naam=sNaam;
+		this.naam=sNaam;
 	}
 	
-	function getScore()
+	getScore()
 	{
-		return score;
+		return this.score;
 	}
 	
-	function verhoogScore()
+	verhoogScore()
 	{
-		score++;
+		this.score++;
 	}
 	
-	function getKleur()
+	getKleur()
 	{
-		return kleur;
+		return this.kleur;
 	}
 	
-	function wisselBeurt()
+	wisselBeurt()
 	{
-		if(aanBeurt===true)
+		if(this.aanBeurt===true)
 		{
-			aanBeurt=false;
+			this.aanBeurt=false;
 		}
 		else
 		{
-			aanBeurt=true;
+			this.aanBeurt=true;
 		}
 	}
 	
-	function benIkAanBeurt()
+	benIkAanBeurt()
 	{
-		return aanBeurt;
+		return this.aanBeurt;
 	}
 }
 	
