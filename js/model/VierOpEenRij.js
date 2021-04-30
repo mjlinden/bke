@@ -8,7 +8,7 @@ export default class VierOpEenRij
 		this.vakjes= new Array(3);
 		this.spelActief=false;
 
-		for( var i=0; i<3; i++)
+		for(let i=0; i<3; i++)
 		{
 			this.vakjes[i]=new Array(3);
 		}

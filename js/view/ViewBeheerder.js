@@ -10,24 +10,24 @@ export default class ViewBeheerder
 		document.querySelectorAll('nav>button')[1].onclick = stoppenKlikHandler;
 	}
 
-	static resetNamen()
+	resetNamen()
 	{
 		document.querySelector('#naam1').value="";
 		document.querySelector('#naam2').value="";
 	
 	}
 	
-	static getNaamSpeler1()
+	getNaamSpeler1()
 	{
 		return document.querySelector('#naam1').value;
 	}
 	
-	static getNaamSpeler2()
+	getNaamSpeler2()
 	{
 		return document.querySelector('#naam2').value;
 	}
 	
-	static toonSpelers(speler1, speler2)
+	toonSpelers(speler1, speler2)
 	{
 		var eigenschapdivs1=document.querySelectorAll('#speler1>div');
 		eigenschapdivs1[0].innerHTML=speler1.getNaam();
@@ -40,19 +40,19 @@ export default class ViewBeheerder
 		eigenschapdivs2[2].innerHTML=speler2.getScore();
 	}
 	
-	static toonSpeelveldscherm()
+	toonSpeelveldscherm()
 	{
 		document.querySelector('#speelveldscherm').style.display="block";
 		document.querySelector('#startscherm').style.display="none";
 	}
 	
-	static toonStartscherm()
+	toonStartscherm()
 	{
 		document.querySelector('#speelveldscherm').style.display="none";
 		document.querySelector('#startscherm').style.display="block";
 	}
 	
-	static toonMededeling(mededeling)
+	toonMededeling(mededeling)
 	{
 		var mededelingDiv=document.querySelector('#mededeling');
 		mededelingDiv.innerHTML=mededeling;
@@ -83,13 +83,13 @@ export default class ViewBeheerder
 		}
 		return -1;
 	}
-	static toonNavigatie()
+	toonNavigatie()
 	{
 		document.querySelector('nav').style.visibility="visible";
 		
 	}
 		
-	static verbergNavigatie()
+	verbergNavigatie()
 	{
 		document.querySelector('nav').style.visibility="hidden";
 	}
@@ -100,8 +100,8 @@ export default class ViewBeheerder
 		{
 			for (let kolom=0; kolom<3; kolom++)
 			{
-				const positie = rij * 7 + kolom;
-				vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
+				const positie = rij * 3 + kolom;
+				this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
 			}
 		}
 	}
