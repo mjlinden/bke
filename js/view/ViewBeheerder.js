@@ -30,14 +30,16 @@ export default class ViewBeheerder
 	toonSpelers(speler1, speler2)
 	{
 		var eigenschapdivs1=document.querySelectorAll('#speler1>div');
-		eigenschapdivs1[0].innerHTML=speler1.getNaam();
-		eigenschapdivs1[1].style.backgroundImage="url('images/spel/"+speler1.getKleur()+".jpg')";
+		eigenschapdivs1[0].innerHTML=speler1.getName();
+		eigenschapdivs1[1].style.backgroundImage="url('images/spel/"+speler1.getSymbool()+".png')";
 		eigenschapdivs1[2].innerHTML=speler1.getScore();
 	
 		var eigenschapdivs2=document.querySelectorAll('#speler2>div');
-		eigenschapdivs2[0].innerHTML=speler2.getNaam();
-		eigenschapdivs2[1].style.backgroundImage="url('images/spel/"+speler2.getKleur()+".jpg')";
+		eigenschapdivs2[0].innerHTML=speler2.getName();
+		eigenschapdivs2[1].style.backgroundImage="url('images/spel/"+speler2.getSymbool()+".png')";
 		eigenschapdivs2[2].innerHTML=speler2.getScore();
+
+
 	}
 	
 	toonSpeelveldscherm()
@@ -54,14 +56,14 @@ export default class ViewBeheerder
 	
 	toonMededeling(mededeling)
 	{
-		var mededelingDiv=document.querySelector('#mededeling');
+		var mededelingDiv=document.querySelector('.mededeling');
 		mededelingDiv.innerHTML=mededeling;
 	}
 	
 	getGeklikteKolom(event)
 	{
 		var bron = event.target;
-		for(var i=0; i<vakjesDivs.length; i++)
+		for(var i=0; i<this.vakjesDivs.length; i++)
 		{
 			if(this.vakjesDivs[i]===bron)
 			{

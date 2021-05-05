@@ -8,8 +8,8 @@ export default class Controller
 	{
 		this.model = new VierOpEenRij();
 		this.view = new ViewBeheerder(this.reageerKlikOpSpeelveld, this.reageerKlikOpStart, this.reageerKlikOpNieuwSpel, this.reageerKlikOpStoppen);
-		this.speler1=new Speler(true,"ROOD");
-		this.speler2=new Speler(false,"GEEL");
+		this.speler1=new Speler(true,"kruis");
+		this.speler2=new Speler(false,"rondje");
 		this.view.toonStartscherm();
 	}
 	
@@ -21,11 +21,11 @@ export default class Controller
 		
 		if(speler1.benIkAanBeurt())
 		{
-			this.view.toonMededeling(speler1.getNaam() + " is aan de beurt");
+			this.view.toonMededeling(speler1.getName() + " is aan de beurt");
 		}
 		else
 		{
-			this.view.toonMededeling(speler2.getNaam() + " is aan de beurt");
+			this.view.toonMededeling(speler2.getName() + " is aan de beurt");
 		}
 		
 		this.model.maakSpelActief();
@@ -56,8 +56,8 @@ export default class Controller
 		
 		if(naam1!==naam2 && naam1!=="" && naam2 !=="")
 		{
-			this.speler1.setNaam(naam1);
-			this.speler2.setNaam(naam2);
+			this.speler1.setName(naam1);
+			this.speler2.setName(naam2);
 		
 		
 		
@@ -67,14 +67,17 @@ export default class Controller
 			
 			if(this.speler1.benIkAanBeurt())
 			{
-				this.view.toonMededeling(this.speler1.getNaam() + " is aan de beurt");
+				this.view.toonMededeling(this.speler1.getName() + " is aan de beurt");
 			}
 			else
 			{
-				this.view.toonMededeling(this.speler2.getNaam() + " is aan de beurt");
+				this.view.toonMededeling(this.speler2.getName() + " is aan de beurt");
 			}
 			
 			this.model.maakSpelActief();
+		}
+		else {
+			this.view.toonMededeling("vul jullie namen in!");
 		}
 	}
 	
@@ -85,26 +88,26 @@ export default class Controller
 		{
 			let kolomNummer = this.view.getGeklikteKolom(event);
 			
-			if(speler1.benIkAanBeurt()===true)
+			if(this.speler1.benIkAanBeurt()===true)
 			{
-				actieveSpeler=speler1;
-				passieveSpeler=speler2;
+				actieveSpeler=this.speler1;
+				passieveSpeler=this.speler2;
 			}
 			else
 			{
-				passieveSpeler=speler1;
-				actieveSpeler=speler2;
+				passieveSpeler=this.speler1;
+				actieveSpeler=this.speler2;
 			}
 			
 			
-			let hetMag = this.model.magZet(kolomNummer,actieveSpeler.getKleur());
+			let hetMag = this.model.magZet(kolomNummer,actieveSpeler.getSymbool());
 			if(hetMag===true)
 			{
-				let winnaar= this.model.isWinnaar(actieveSpeler.getKleur());
+				let winnaar= this.model.isWinnaar(actieveSpeler.getSymbool());
 				if(winnaar===true)
 				{	
 					actieveSpeler.verhoogScore();
-					this.view.toonMededeling(actieveSpeler.getNaam()+" heeft gewonnen!!!");
+					this.view.toonMededeling(actieveSpeler.getName()+" heeft gewonnen!!!");
 							
 					ViewBeheerder.toonSpelers(speler1,speler2);
 					this.view.toonNavigatie();
@@ -125,12 +128,12 @@ export default class Controller
 				
 				if (this.model.isSpelActief())
 				{
-					this.view.toonMededeling(passieveSpeler.getNaam() + " is aan de beurt");
+					this.view.toonMededeling(passieveSpeler.getName() + " is aan de beurt");
 				}
 			}
 			else
 			{
-				this.view.toonMededeling(actieveSpeler.getNaam() + " ,de kolom is vol");
+				this.view.toonMededeling(actieveSpeler.getName() + " ,de kolom is vol");
 			}	
 		}
 	}

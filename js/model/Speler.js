@@ -3,10 +3,10 @@
 export default class Speler
 {
 
-	constructor(sAanBeurt,sKleur) {
+	constructor(sAanBeurt,sSymbool) {
 		this.aanBeurt=sAanBeurt;
-		this.kleur=sKleur;
 		this.score=0;
+		this.symbool=sSymbool;
 	}
 
 
@@ -15,12 +15,12 @@ export default class Speler
 		this.score=0;
 	}
 		
-	getNaam()
+	getName()
 	{
 		return this.naam;
 	}
 	
-	setNaam(sNaam)
+	setName(sNaam)
 	{
 		this.naam=sNaam;
 	}
@@ -35,9 +35,9 @@ export default class Speler
 		this.score++;
 	}
 	
-	getKleur()
+	getSymbool()
 	{
-		return this.kleur;
+		return this.symbool;
 	}
 	
 	wisselBeurt()

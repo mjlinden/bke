@@ -88,11 +88,12 @@ table td
 .fiche
 {	
     height:50px;
-	background: url(../images/spel/leeg.jpg);
+
 	background-size:100% 100%;
 	background-repeat:no-repeat;
+
     width:50px;
-    border:1px solid #666666;
+
 	margin:20px auto;
 
 	
@@ -109,11 +110,8 @@ table td
     border:1px solid #666666;
 }
 
-
-
 nav
 {
-
 	text-align:center;
 }
 
@@ -121,7 +119,8 @@ button
 {
 	margin:0px 40px;
 }
-#mededeling{
+
+.mededeling{
 	width: 350px;
 	margin:20px auto;
 	border-color:red;
@@ -134,7 +133,7 @@ button
 footer
 {
     padding:10px;
-    text-align:right;
+    text-align:center;
 	font-size:0.5em;
 	font-style:italic;
     color:red;
