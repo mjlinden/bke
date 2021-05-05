@@ -1,5 +1,5 @@
 import ViewBeheerder from "../view/ViewBeheerder.js";
-import VierOpEenRij from "../model/VierOpEenRij.js";
+import VierOpEenRij from "../model/bke.js";
 import Speler from "../model/Speler.js";
 
 export default class Controller
@@ -18,14 +18,14 @@ export default class Controller
 		this.model.reset();
 		let fiches = this.model.getFiches();
 		this.view.toonFiches(fiches);
-		
-		if(speler1.benIkAanBeurt())
+
+		if(this.speler1.benIkAanBeurt())
 		{
-			this.view.toonMededeling(speler1.getName() + " is aan de beurt");
+			this.view.toonMededeling(this.speler1.getName() + " is aan de beurt");
 		}
 		else
 		{
-			this.view.toonMededeling(speler2.getName() + " is aan de beurt");
+			this.view.toonMededeling(this.speler2.getName() + " is aan de beurt");
 		}
 		
 		this.model.maakSpelActief();
@@ -87,6 +87,7 @@ export default class Controller
 		if (this.model.isSpelActief())
 		{
 			let kolomNummer = this.view.getGeklikteKolom(event);
+			let rijNummer=this.view.getGeklikteRij(event);
 			
 			if(this.speler1.benIkAanBeurt()===true)
 			{
@@ -100,31 +101,37 @@ export default class Controller
 			}
 			
 			
-			let hetMag = this.model.magZet(kolomNummer,actieveSpeler.getSymbool());
+			let hetMag = this.model.magZet(rijNummer,kolomNummer,actieveSpeler.getSymbool());
+			//window.alert("rij:"+rijNummer+"kolom:"+kolomNummer+"mag:"+hetMag);
 			if(hetMag===true)
 			{
 				let winnaar= this.model.isWinnaar(actieveSpeler.getSymbool());
+
 				if(winnaar===true)
 				{	
 					actieveSpeler.verhoogScore();
 					this.view.toonMededeling(actieveSpeler.getName()+" heeft gewonnen!!!");
 							
-					ViewBeheerder.toonSpelers(speler1,speler2);
+					this.view.toonSpelers(this.speler1,this.speler2);
 					this.view.toonNavigatie();
-				}
+				} else {
+                    let gelijkspel=this.model.isGelijkspel();
+
+                    if(gelijkspel===true)
+                    {
+                        this.view.toonMededeling("gelijkspel!");
+                        this.view.toonNavigatie();
+                    }
+                }
 				
-				let gelijkspel=this.model.isGelijkspel();
-				if(gelijkspel===true)
-				{
-					this.view.toonMededeling("gelijkspel!");
-					this.view.toonNavigatie();
-				}
+
 				//update this.view
 				let fiches = this.model.getFiches();
+				console.log(fiches);
 				this.view.toonFiches(fiches);
 							
-				speler1.wisselBeurt();
-				speler2.wisselBeurt();
+				this.speler1.wisselBeurt();
+				this.speler2.wisselBeurt();
 				
 				if (this.model.isSpelActief())
 				{
@@ -133,7 +140,7 @@ export default class Controller
 			}
 			else
 			{
-				this.view.toonMededeling(actieveSpeler.getName() + " ,de kolom is vol");
+				this.view.toonMededeling(actieveSpeler.getName() + " er staat al een fiche!!!");
 			}	
 		}
 	}

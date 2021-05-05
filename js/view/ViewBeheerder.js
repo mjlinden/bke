@@ -29,12 +29,12 @@ export default class ViewBeheerder
 	
 	toonSpelers(speler1, speler2)
 	{
-		var eigenschapdivs1=document.querySelectorAll('#speler1>div');
+		let eigenschapdivs1=document.querySelectorAll('#speler1>div');
 		eigenschapdivs1[0].innerHTML=speler1.getName();
 		eigenschapdivs1[1].style.backgroundImage="url('images/spel/"+speler1.getSymbool()+".png')";
 		eigenschapdivs1[2].innerHTML=speler1.getScore();
 	
-		var eigenschapdivs2=document.querySelectorAll('#speler2>div');
+		let eigenschapdivs2=document.querySelectorAll('#speler2>div');
 		eigenschapdivs2[0].innerHTML=speler2.getName();
 		eigenschapdivs2[1].style.backgroundImage="url('images/spel/"+speler2.getSymbool()+".png')";
 		eigenschapdivs2[2].innerHTML=speler2.getScore();
@@ -52,18 +52,21 @@ export default class ViewBeheerder
 	{
 		document.querySelector('#speelveldscherm').style.display="none";
 		document.querySelector('#startscherm').style.display="block";
+		this.toonMededeling("welkom bij het spel vier op een rij lite");
 	}
 	
 	toonMededeling(mededeling)
 	{
-		var mededelingDiv=document.querySelector('.mededeling');
-		mededelingDiv.innerHTML=mededeling;
+		const mededelingDivs=document.querySelectorAll('.mededeling');
+		mededelingDivs.forEach(function (val, index, theArray) {
+           mededelingDivs[index].innerHTML=mededeling;
+        })
 	}
 	
 	getGeklikteKolom(event)
 	{
-		var bron = event.target;
-		for(var i=0; i<this.vakjesDivs.length; i++)
+		let bron = event.target;
+		for(let i=0; i<this.vakjesDivs.length; i++)
 		{
 			if(this.vakjesDivs[i]===bron)
 			{
@@ -75,12 +78,12 @@ export default class ViewBeheerder
 
 	getGeklikteRij(event)
 	{
-		var bron = event.target;
-		for(var i=0; i<vakjesDivs.length; i++)
+		let bron = event.target;
+		for(let i=0; i<this.vakjesDivs.length; i++)
 		{
 			if(this.vakjesDivs[i]===bron)
 			{
-				return i/3;
+				return Math.floor(i/3);
 			}
 		}
 		return -1;
@@ -103,7 +106,14 @@ export default class ViewBeheerder
 			for (let kolom=0; kolom<3; kolom++)
 			{
 				const positie = rij * 3 + kolom;
-				this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
+				if(fiches[rij][kolom]==='kruis' ||fiches[rij][kolom]==='rondje' )
+					this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".png')";
+				if(fiches[rij][kolom]==="LEEG")
+                    this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
+				if(fiches[rij][kolom]==="GROEN") {
+                    this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
+				}
+
 			}
 		}
 	}

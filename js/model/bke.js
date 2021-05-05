@@ -1,6 +1,6 @@
 
 
-export default class VierOpEenRij
+export default class Bke
 {
 
 		//*********************initialisatie bij aanroepen constructor*****************************************
@@ -35,22 +35,22 @@ export default class VierOpEenRij
 		{	
 			for (let kolom = 0; kolom <3; kolom++)
 			{
-				if(vakjes[rij][kolom]==="LEEG")
+				if(this.vakjes[rij][kolom]==="LEEG")
 				{
-					this.gelijkspel=false;
+					gelijkspel=false;
 				}
 			}
 		}
 		
-		if(this.gelijkspel===true)
+		if(gelijkspel===true)
 		{
 			this.spelActief=false;
 		}	
 		
-		return this.gelijkspel;
+		return gelijkspel;
 	}
 	
-	isWinnaar( kleur)
+	isWinnaar(symbool)
 	{
 		let kolom;
 		let rij;
@@ -59,11 +59,11 @@ export default class VierOpEenRij
 		/////////////////////Controle Horizontaal/////////////////////////
 		for(rij = 0; rij<3; rij++)
 		{
-				if ((this.vakjes[rij][0] === kleur && this.vakjes[rij][1] === kleur && this.vakjes[rij][2] === kleur) )
+				if ((this.vakjes[rij][0] === symbool && this.vakjes[rij][1] === symbool && this.vakjes[rij][2] === symbool) )
 				{
-					vakjes[rij][0]="GROEN";
-					vakjes[rij][1]= "GROEN";
-					vakjes[rij][2]="GROEN";
+					this.vakjes[rij][0]="GROEN";
+					this.vakjes[rij][1]="GROEN";
+					this.vakjes[rij][2]="GROEN";
 					this.spelActief=false;
 					winnaar = true;
 				}
@@ -73,11 +73,11 @@ export default class VierOpEenRij
 		for(kolom=0;kolom<7;kolom++)
 		{	
 
-				if ((this.vakjes[0][kolom] === kleur && this.vakjes[1][kolom] === kleur && this.vakjes[2][kolom] === kleur ))
+				if ((this.vakjes[0][kolom] === symbool && this.vakjes[1][kolom] === symbool && this.vakjes[2][kolom] === symbool ))
 				{
-					vakjes[0][kolom]="GROEN";
-					vakjes[1][kolom]= "GROEN";
-					vakjes[2][kolom]="GROEN";
+					this.vakjes[0][kolom]="GROEN";
+					this.vakjes[1][kolom]= "GROEN";
+					this.vakjes[2][kolom]="GROEN";
 					this.spelActief=false;
 					winnaar = true;
 				}
@@ -87,21 +87,21 @@ export default class VierOpEenRij
 		
 		///////////////////////Controle Diagonaal /////////
 
-		if (this.vakjes[0][0] === kleur && this.vakjes[1][1] === kleur && this.vakjes[2][2] === kleur )
+		if (this.vakjes[0][0] === symbool && this.vakjes[1][1] === symbool && this.vakjes[2][2] === symbool )
 		{
-			vakjes[0][0]="GROEN";
-			vakjes[1][1]="GROEN";
-			vakjes[2][2]="GROEN";
+			this.vakjes[0][0]="GROEN";
+			this.vakjes[1][1]="GROEN";
+			this.vakjes[2][2]="GROEN";
 
 			this.spelActief=false;
 			winnaar = true;
 		}
 
-		if (this.vakjes[0][2] === kleur && this.vakjes[1][1] === kleur && this.vakjes[2][0] === kleur)
+		if (this.vakjes[0][2] === symbool && this.vakjes[1][1] === symbool && this.vakjes[2][0] === symbool)
 		{
-			vakjes[0][2]="GROEN";
-			vakjes[1][1]="GROEN";
-			vakjes[2][0]="GROEN";
+			this.vakjes[0][2]="GROEN";
+			this.vakjes[1][1]="GROEN";
+			this.vakjes[2][0]="GROEN";
 
 			this.spelActief=false;
 			winnaar = true;
@@ -125,11 +125,12 @@ export default class VierOpEenRij
 		return this.vakjes;
 	}
 	
-	magZet(rij,kolom,kleur)
+	magZet(rij,kolom,symbool)
 	{
+		//window.alert(rij+" "+kolom);
 			if(this.vakjes[rij][kolom]==="LEEG")
 			{
-				this.vakjes[rij][kolom]= kleur;
+				this.vakjes[rij][kolom]= symbool;
 				return true;
 			}
 		return false;
