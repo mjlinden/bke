@@ -1,5 +1,4 @@
 
-
 export default class Bke
 {
 
@@ -61,9 +60,9 @@ export default class Bke
 		{
 				if ((this.vakjes[rij][0] === symbool && this.vakjes[rij][1] === symbool && this.vakjes[rij][2] === symbool) )
 				{
-					this.vakjes[rij][0]="GROEN";
-					this.vakjes[rij][1]="GROEN";
-					this.vakjes[rij][2]="GROEN";
+					this.vakjes[rij][0]=`${symbool}win`;
+					this.vakjes[rij][1]=`${symbool}win`;
+					this.vakjes[rij][2]=`${symbool}win`;
 					this.spelActief=false;
 					winnaar = true;
 				}
@@ -75,9 +74,9 @@ export default class Bke
 
 				if ((this.vakjes[0][kolom] === symbool && this.vakjes[1][kolom] === symbool && this.vakjes[2][kolom] === symbool ))
 				{
-					this.vakjes[0][kolom]="GROEN";
-					this.vakjes[1][kolom]= "GROEN";
-					this.vakjes[2][kolom]="GROEN";
+					this.vakjes[0][kolom]=`${symbool}win`;
+					this.vakjes[1][kolom]= `${symbool}win`;
+					this.vakjes[2][kolom]=`${symbool}win`;
 					this.spelActief=false;
 					winnaar = true;
 				}
@@ -89,9 +88,9 @@ export default class Bke
 
 		if (this.vakjes[0][0] === symbool && this.vakjes[1][1] === symbool && this.vakjes[2][2] === symbool )
 		{
-			this.vakjes[0][0]="GROEN";
-			this.vakjes[1][1]="GROEN";
-			this.vakjes[2][2]="GROEN";
+			this.vakjes[0][0]=`${symbool}win`;
+			this.vakjes[1][1]=`${symbool}win`;
+			this.vakjes[2][2]=`${symbool}win`;
 
 			this.spelActief=false;
 			winnaar = true;
@@ -99,9 +98,9 @@ export default class Bke
 
 		if (this.vakjes[0][2] === symbool && this.vakjes[1][1] === symbool && this.vakjes[2][0] === symbool)
 		{
-			this.vakjes[0][2]="GROEN";
-			this.vakjes[1][1]="GROEN";
-			this.vakjes[2][0]="GROEN";
+			this.vakjes[0][2]=`${symbool}win`;
+			this.vakjes[1][1]=`${symbool}win`;
+			this.vakjes[2][0]=`${symbool}win`;
 
 			this.spelActief=false;
 			winnaar = true;

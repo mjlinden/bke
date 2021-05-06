@@ -106,13 +106,10 @@ export default class ViewBeheerder
 			for (let kolom=0; kolom<3; kolom++)
 			{
 				const positie = rij * 3 + kolom;
-				if(fiches[rij][kolom]==='kruis' ||fiches[rij][kolom]==='rondje' )
+				if(fiches[rij][kolom]==='kruis' ||fiches[rij][kolom]==='rondje' ||fiches[rij][kolom]==="kruiswin" ||fiches[rij][kolom]==="rondjewin" )
 					this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".png')";
 				if(fiches[rij][kolom]==="LEEG")
                     this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
-				if(fiches[rij][kolom]==="GROEN") {
-                    this.vakjesDivs[positie].style.backgroundImage="url('images/spel/"+fiches[rij][kolom]+".jpg')";
-				}
 
 			}
 		}

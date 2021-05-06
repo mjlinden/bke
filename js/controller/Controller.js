@@ -102,7 +102,7 @@ export default class Controller
 			
 			
 			let hetMag = this.model.magZet(rijNummer,kolomNummer,actieveSpeler.getSymbool());
-			//window.alert("rij:"+rijNummer+"kolom:"+kolomNummer+"mag:"+hetMag);
+
 			if(hetMag===true)
 			{
 				let winnaar= this.model.isWinnaar(actieveSpeler.getSymbool());
